@@ -1,0 +1,46 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": false,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "strictPropertyInitialization": false,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2017",
+    "module": "es2020",
+    "lib": [
+      "es2020",
+      "dom"
+    ],
+    "paths": {
+      "@services": ["src/app/services/index.ts"],
+      "@constant": ["src/app/constants/index.ts"],
+      "@models": ["src/app/models/index.ts"],
+      "@guards": ["src/app/guards/index.ts"],
+      "@directives": ["src/app/directives/index.ts"],
+      "@interceptors": ["src/app/interceptors/index.ts"],
+      "@feature/shared": ["src/app/feature/shared/index.ts"],
+      "@feature/auth": ["src/app/feature/auth/index.ts"],
+      "@feature/content": ["src/app/feature/content/index.ts"],
+      "@feature/vehicles": ["src/app/feature/vehicles/index.ts"],
+      "@feature/tables": ["src/app/feature/tables/index.ts"]
+    },
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
+}

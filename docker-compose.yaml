@@ -1,0 +1,42 @@
+version: '3.1'
+
+services:
+
+  mongodb:
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb-data:/data/db
+
+  be:
+    build:
+      context: ./tracker-be
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - ./tracker-be:/var/www/tracker-be
+      - /var/www/tracker-be/node_modules
+    environment:
+      MONGO_URL: mongodb
+    depends_on:
+      - mongodb
+
+  fe:
+    build:
+      context: ./tracker-ui
+      dockerfile: Dockerfile
+    ports:
+      - 4200:4200
+    volumes:
+      - ./tracker-ui:/var/www/tracker-ui
+      - /var/www/tracker-ui/node_modules
+    environment:
+      SERVER_URL: be
+    depends_on:
+      - be
+
+volumes:
+  mongodb-data:
+    name: mongodb-data

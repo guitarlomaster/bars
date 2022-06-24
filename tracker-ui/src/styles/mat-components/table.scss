@@ -1,0 +1,105 @@
+@use '@angular/material' as mat;
+
+$divider-color: map-get(mat.$light-theme-foreground-palette, divider);
+
+.project-theme {
+  .mat-table-wrapper {
+    border: 1px solid $divider-color;
+  }
+
+  .mat-table {
+    width: 100%;
+
+    .mat-row, .mat-footer-row, .mat-header-row {
+      min-height: unset;
+    }
+
+    .mat-header-cell {
+      position: relative;
+      padding: 10px;
+
+      .mat-header-cell-divider {
+        height: 100%;
+        width: 5px;
+        display: flex;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        &::before {
+          content: '';
+          height: 60%;
+          width: 1px;
+          margin: 0 auto;
+          display: block;
+          background-color: $divider-color;
+        }
+      }
+    }
+
+    .mat-cell {
+      padding: 10px;
+    }
+
+    .mat-column-select, .mat-column-action {
+      flex: none;
+    }
+
+    .mat-column-action {
+      width: 24px;
+    }
+
+    .mat-column-select {
+      width: 20px;
+    }
+
+    .mat-table-row-action-loading {
+      .mat-cell {
+        opacity: 0.5;
+        background-color: $divider-color;
+      }
+    }
+  }
+}
+
+.table-actions-menu {
+  width: 230px;
+
+  .table-actions-menu__item {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .table-actions-menu__item-icon, .table-actions-menu__item-title {
+    display: block;
+    transition: ease 200ms;
+  }
+
+  .table-actions-menu__item_pending {
+    .table-actions-menu__actions {
+      transform: translate(0, -50%);
+    }
+
+    .table-actions-menu__item-icon {
+      transform: translateX(calc(-100% - 16px));
+    }
+
+    .table-actions-menu__item-title {
+      transform: translateX(-40px);
+    }
+  }
+
+  .table-actions-menu__actions {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(100%, -50%);
+    transition: ease 200ms;
+
+    mat-icon {
+      margin: 0;
+    }
+  }
+}

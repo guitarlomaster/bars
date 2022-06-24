@@ -1,0 +1,23 @@
+.vehicles {
+  height: 100%;
+
+  .vehicles__actions {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+
+    button {
+      margin-bottom: 1.34375em;
+    }
+  }
+
+  .vehicles__search {
+    width: 400px;
+  }
+
+  .vehicles__table {
+    height: calc(100% - 70px);
+  }
+
+}

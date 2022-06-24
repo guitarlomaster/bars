@@ -1,0 +1,27 @@
+@use '@angular/material' as mat;
+
+$accent-palette: mat.$deep-orange-palette;
+
+.project-theme {
+
+  .content-block {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .full-height-flex {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .app-link {
+    color: map-get($accent-palette, 500);
+    cursor: pointer;
+
+    &:hover {
+      color: map-get($accent-palette, 400);
+    }
+  }
+
+}

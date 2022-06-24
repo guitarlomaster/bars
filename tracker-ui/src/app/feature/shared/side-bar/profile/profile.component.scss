@@ -1,0 +1,11 @@
+.profile {
+  height: 100%;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile__actions {
+  display: flex;
+  justify-content: flex-end;
+}

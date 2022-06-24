@@ -1,0 +1,17 @@
+<div class="profile">
+  <side-bar-header>
+    <h1>User profile</h1>
+  </side-bar-header>
+  <side-bar-content>
+    <h3>Login</h3>
+    <p>{{ currentUser?.login }}</p>
+  </side-bar-content>
+  <side-bar-footer>
+    <div class="profile__actions">
+      <button mat-raised-button
+              color="warn"
+              (click)="onDeleteAccount()"
+      >Delete account</button>
+    </div>
+  </side-bar-footer>
+</div>

@@ -1,0 +1,18 @@
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+
+  .breadcrumbs__item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+  }
+
+  .breadcrumbs__icon {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

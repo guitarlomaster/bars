@@ -1,0 +1,27 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$primary: mat.define-palette(mat.$deep-purple-palette, 500);
+$accent: mat.define-palette(mat.$deep-orange-palette, A200, A100, A400);
+
+$theme: mat.define-light-theme((
+  color: (
+    primary: $primary,
+    accent: $accent,
+  )
+));
+
+@include mat.all-component-themes($theme);
+
+@import "styles/mat-components/mat-components";
+@import "styles/indents";
+@import "styles/scrollbars";
+@import "styles/common";
+@import "styles/resets";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+*, *::before, *::after {
+  box-sizing: border-box;
+}

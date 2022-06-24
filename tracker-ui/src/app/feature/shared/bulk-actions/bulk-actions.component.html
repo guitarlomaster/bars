@@ -1,0 +1,12 @@
+<div *ngIf="isShown"
+     class="bulk-actions"
+>
+  <button *ngIf="isDeleteActive"
+          mat-icon-button
+          class="bulk-actions__delete"
+          (click)="onDelete.emit()"
+          matTooltip="Delete selected"
+  >
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>

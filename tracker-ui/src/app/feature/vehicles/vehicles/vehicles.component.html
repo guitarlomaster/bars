@@ -1,0 +1,33 @@
+<div class="vehicles content-block pt-16px">
+  <div class="vehicles__actions">
+    <button mat-icon-button
+            class="mr-16px"
+            routerLink="/content/vehicles/create"
+            matTooltip="Add vehicle"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+    <mat-form-field class="vehicles__search mr-16px"
+                    appearance="fill"
+    >
+      <mat-label>Search vehicles</mat-label>
+      <input matInput
+             [(ngModel)]="searchString"
+      >
+    </mat-form-field>
+    <bulk-actions [isDeleteActive]="true"
+                  [isShown]="!!selectedIds.length && !loadingIds.length"
+                  (onDelete)="deleteVehicles(selectedIds)"
+    ></bulk-actions>
+  </div>
+  <div class="vehicles__table">
+    <vehicles-table [data]="vehicles"
+                    [searchString]="searchString"
+                    [selectedDataIds]="selectedIds"
+                    [loadingDataIds]="loadingIds"
+                    (onDataSelected)="setSelectedIds($event)"
+                    (onDataLoading)="setLoadingIds($event)"
+                    (onDelete)="deleteVehicles($event)"
+    ></vehicles-table>
+  </div>
+</div>

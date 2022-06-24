@@ -1,0 +1,38 @@
+<main class="header-main" *busy="loading || (authService.isDeletingUser$ | async)">
+  <mat-drawer-container [hasBackdrop]="true">
+
+    <mat-drawer #drawer mode="over" position="end">
+      <ng-template dComponentHost></ng-template>
+    </mat-drawer>
+
+    <mat-toolbar color="primary" class="header">
+      <div class="header__home mr-16px"
+           routerLink="/content/vehicles"
+           routerLinkActive="header__home_active"
+      >
+        <span class="mr-8px">Tracker</span>
+        <mat-icon>local_shipping</mat-icon>
+      </div>
+      <breadcrumb *ngIf="breadcrumbs$ | async else menuTpl"></breadcrumb>
+      <ng-template #menuTpl>
+        <div class="header__item"
+             routerLink="/content/vehicles"
+             routerLinkActive="header__item_active"
+        >Vehicles</div>
+      </ng-template>
+      <div class="header__spacer"></div>
+      <div class="header__item header__user"
+           [matMenuTriggerFor]="userMenu"
+           #actionsMenuTrigger="matMenuTrigger" matTooltip="User profile">
+        <mat-icon>person</mat-icon>
+      </div>
+      <mat-menu #userMenu="matMenu">
+        <button mat-menu-item (click)="openProfileSideBar()">View profile</button>
+        <button mat-menu-item (click)="logout()">Logout</button>
+      </mat-menu>
+    </mat-toolbar>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-container>
+</main>

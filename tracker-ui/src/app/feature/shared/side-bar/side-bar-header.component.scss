@@ -1,0 +1,23 @@
+@use '@angular/material' as mat;
+
+$primary: map-get(mat.$deep-purple-palette, 500);
+
+:host.side-bar-header {
+  padding: 20px 16px;
+  display: block;
+  position: relative;
+  background-color: $primary;
+  color: white;
+
+  mat-icon {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+@use '@angular/material' as mat;
+
+$footer-bg: map-get(mat.$grey-palette, 200);
+
+.vehicle-upsert {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .vehicle-upsert__form {
+    width: 100%;
+    max-width: 500px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .vehicle-upsert__footer {
+    padding: 20px 0;
+    background-color: $footer-bg;
+  }
+
+  .vehicle-upsert__footer-content {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+}

@@ -1,0 +1,107 @@
+<div class="vehicles-table layout-scrollbar mat-table-wrapper">
+  <div class="vehicles-table__not-found" *ngIf="!data.length">
+    There is no vehicles.
+  </div>
+  <table mat-table
+         [dataSource]="tableDataSource"
+         [trackBy]="trackBy"
+         matSort
+         [matSortDirection]="tableSorting.direction"
+         [matSortActive]="tableSorting.active"
+         matSortDisableClear
+  >
+
+    <ng-container [matColumnDef]="COLUMNS.SELECT" sticky>
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null"
+                      [checked]="tableSelection.hasValue() && isAllSelected"
+                      [indeterminate]="tableSelection.hasValue() && !isAllSelected">
+        </mat-checkbox>
+        <span class="mat-header-cell-divider"></span>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox *ngIf="!isRowInLoading(row.id) else loadingTpl"
+                      (click)="$event.stopPropagation()"
+                      (change)="$event ? singleToggle(row.id) : null"
+                      [checked]="tableSelection.isSelected(row.id)">
+        </mat-checkbox>
+        <ng-template #loadingTpl>
+          <mat-spinner diameter="20" strokeWidth="4"></mat-spinner>
+        </ng-template>
+      </td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="COLUMNS.NAME">
+      <th mat-header-cell
+          mat-sort-header
+          *matHeaderCellDef
+      >
+        <span>Name</span>
+        <span class="mat-header-cell-divider"></span>
+      </th>
+      <td mat-cell *matCellDef="let row">{{row.name}}</td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="COLUMNS.DESCRIPTION">
+      <th mat-header-cell *matHeaderCellDef>
+        <span>Description</span>
+        <span class="mat-header-cell-divider"></span>
+      </th>
+      <td mat-cell *matCellDef="let row">{{row.description}}</td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="COLUMNS.ACTION" stickyEnd>
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-icon-button
+                [matMenuTriggerFor]="actionsMenu"
+                #actionsMenuTrigger="matMenuTrigger"
+                (click)="onActionClicked(row)"
+                (onMenuClose)="clearActionState()"
+                [disabled]="!tableSelection.isEmpty() || isRowInLoading(row.id)"
+        >
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="tableRowSequence; sticky: true"></tr>
+    <tr mat-row
+        *matRowDef="let row; columns: tableRowSequence"
+        [class.mat-table-row-action-loading]="isRowInLoading(row.id)"
+    ></tr>
+    <tr *ngIf="isFilteredDataEmpty"></tr>
+  </table>
+</div>
+
+<mat-menu #actionsMenu="matMenu"
+          class="table-actions-menu"
+>
+
+  <button mat-menu-item
+          class="table-actions-menu__item"
+          (click)="confirmAction(ACTION_TYPES.EDIT)"
+  >
+    <mat-icon>edit</mat-icon>
+    <span>Edit</span>
+  </button>
+
+  <button mat-menu-item
+          class="table-actions-menu__item"
+          (click)="setPendingAction($event, ACTION_TYPES.DELETE)"
+          [ngClass]="{'table-actions-menu__item_pending': pendingAction === ACTION_TYPES.DELETE}"
+  >
+    <mat-icon class="table-actions-menu__item-icon">delete</mat-icon>
+    <span class="table-actions-menu__item-title">Delete</span>
+
+    <span class="table-actions-menu__actions pr-16px">
+      <span class="mr-8px" (click)="confirmPendingAction($event)">
+        <mat-icon>delete</mat-icon>
+      </span>
+      <span (click)="cancelPendingAction($event)">
+        <mat-icon>close</mat-icon>
+      </span>
+    </span>
+  </button>
+
+</mat-menu>

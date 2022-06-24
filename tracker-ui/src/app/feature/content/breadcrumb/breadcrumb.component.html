@@ -1,0 +1,19 @@
+<ul class="breadcrumbs">
+  <li class="breadcrumbs__item pl-16px pr-16px"
+      [ngClass]="{'breadcrumbs__item_disabled': item.disabled}"
+      *ngFor="let item of breadcrumbs; let i = index"
+  >
+    <ng-container *ngIf="!item.disabled">
+      <mat-icon *ngIf="i !== 0"
+                class="breadcrumbs__icon"
+      >chevron_right</mat-icon>
+      <span class="app-link"
+            *ngIf="item.uplink else textTpl"
+            [routerLink]="item.uplink"
+      >{{ item.name }}</span>
+      <ng-template #textTpl>
+        <span>{{ item.name }}</span>
+      </ng-template>
+    </ng-container>
+  </li>
+</ul>
