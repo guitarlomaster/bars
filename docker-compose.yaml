@@ -23,20 +23,6 @@ services:
     depends_on:
       - mongodb
 
-  fe:
-    build:
-      context: ./tracker-ui
-      dockerfile: Dockerfile
-    ports:
-      - 4200:4200
-    volumes:
-      - ./tracker-ui:/var/www/tracker-ui
-      - /var/www/tracker-ui/node_modules
-    environment:
-      SERVER_URL: be
-    depends_on:
-      - be
-
 volumes:
   mongodb-data:
     name: mongodb-data

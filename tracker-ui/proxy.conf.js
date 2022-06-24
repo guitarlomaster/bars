@@ -1,4 +1,4 @@
-const targetedServer = process.env.SERVER_URL || 'http://localhost:3000';
+const targetedServer = 'http://localhost:3000';
 
 const PROXY_CONFIG = {
     '/api': {
